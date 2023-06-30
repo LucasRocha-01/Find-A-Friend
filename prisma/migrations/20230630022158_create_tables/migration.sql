@@ -2,7 +2,7 @@
 CREATE TABLE "orgs" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
+    "password_hash" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT,
     "phone" TEXT,
