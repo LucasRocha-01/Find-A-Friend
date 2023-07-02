@@ -6,6 +6,7 @@ CREATE TABLE "orgs" (
     "title" TEXT NOT NULL,
     "description" TEXT,
     "phone" TEXT,
+    "cidade" TEXT NOT NULL,
     "latitude" DECIMAL(65,30) NOT NULL,
     "longitude" DECIMAL(65,30) NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -17,7 +18,13 @@ CREATE TABLE "orgs" (
 CREATE TABLE "pets" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "idade" TIMESTAMP(3) NOT NULL,
+    "sobre" TEXT NOT NULL,
+    "idade" TEXT NOT NULL,
+    "porte" TEXT NOT NULL,
+    "energia" TEXT NOT NULL,
+    "independencia" TEXT NOT NULL,
+    "ambiente" TEXT NOT NULL,
+    "requisitos" TEXT[] DEFAULT ARRAY[]::TEXT[],
     "orgs_id" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

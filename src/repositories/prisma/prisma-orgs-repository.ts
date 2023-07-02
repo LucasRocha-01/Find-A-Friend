@@ -37,6 +37,18 @@ export class PrismaOrgsRepository implements OrgsRepository {
     return orgs
   }
 
+  async searchByCity(cidade: string) {
+    const orgs = await prisma.org.findMany({
+      where: {
+        cidade: {
+          contains: cidade,
+        },
+      },
+    })
+
+    return orgs
+  }
+
   async findManyNearby({ latitude, longitude }: FindManyNearbyParams) {
     const orgs = await prisma.$queryRaw<Org[]>`
       SELECT * from orgs

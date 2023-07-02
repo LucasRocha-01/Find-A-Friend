@@ -8,6 +8,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     email: z.string(),
     password: z.string().min(6),
     title: z.string(),
+    cidade: z.string(),
     description: z.string().nullable(),
     phone: z.string().min(8).nullable(),
     latitude: z.number().refine((value) => {
@@ -18,8 +19,16 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     }),
   })
 
-  const { email, password, title, description, phone, latitude, longitude } =
-    createOrgBodySchema.parse(request.body)
+  const {
+    email,
+    password,
+    title,
+    cidade,
+    description,
+    phone,
+    latitude,
+    longitude,
+  } = createOrgBodySchema.parse(request.body)
 
   try {
     const createOrgUseCase = makeCreateOrgUseCase()
@@ -29,6 +38,7 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
       password,
       title,
       description,
+      cidade,
       phone,
       latitude,
       longitude,

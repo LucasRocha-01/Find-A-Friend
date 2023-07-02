@@ -17,6 +17,7 @@ model Org {
   title         String
   description   String?
   phone         String?
+  cidade        String
   latitude      Decimal
   longitude     Decimal
   created_at    DateTime @default(now())
@@ -26,12 +27,18 @@ model Org {
 }
 
 model Pet {
-  id         String   @id @default(uuid())
-  name       String
-  idade      DateTime
-  org        Org      @relation(fields: [orgs_id], references: [id])
-  orgs_id    String
-  created_at DateTime @default(now())
+  id            String   @id @default(uuid())
+  name          String
+  sobre         String
+  idade         String
+  porte         String
+  energia       String
+  independencia String
+  ambiente      String
+  requisitos    String[] @default([])
+  org           Org      @relation(fields: [orgs_id], references: [id])
+  orgs_id       String
+  created_at    DateTime @default(now())
 
   @@map("pets")
 }

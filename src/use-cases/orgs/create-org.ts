@@ -7,6 +7,7 @@ interface CreateOrgUseCaseRequest {
   email: string
   password: string
   title: string
+  cidade: string
   description: string | null
   phone: string | null
   latitude: number
@@ -25,6 +26,7 @@ export class CreateOrgUseCase {
     email,
     password,
     description,
+    cidade,
     phone,
     latitude,
     longitude,
@@ -42,6 +44,7 @@ export class CreateOrgUseCase {
       email,
       password_hash,
       description,
+      cidade,
       phone,
       latitude,
       longitude,

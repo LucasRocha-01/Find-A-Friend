@@ -12,13 +12,35 @@ export class PrismaPetsRepository implements PetsRepository {
     return pet
   }
 
-  async searchMany(query: string, page: number) {
+  async searchMany(
+    orgs_id: string,
+    page: number,
+    idade?: string,
+    porte?: string,
+    ambiente?: string,
+    energia?: string,
+    independencia?: string,
+  ) {
+    const whereConditions: Prisma.PetWhereInput = {
+      orgs_id,
+      ...(idade && { idade }),
+      ...(porte && { porte }),
+      ...(ambiente && { ambiente }),
+      ...(energia && { energia }),
+      ...(independencia && { independencia }),
+    }
+
     const pets = await prisma.pet.findMany({
-      where: {
-        name: {
-          contains: query,
-        },
-      },
+      where: whereConditions,
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return pets
+  }
+
+  async listAll(page: number) {
+    const pets = await prisma.pet.findMany({
       take: 20,
       skip: (page - 1) * 20,
     })

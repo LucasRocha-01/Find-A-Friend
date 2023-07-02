@@ -5,7 +5,13 @@ import { ResourceNotFoundError } from '../erros/resource-not-found-error'
 
 interface RegisterUseCaseRequest {
   name: string
-  idade: Date
+  idade: string
+  sobre: string
+  porte: string
+  energia: string
+  independencia: string
+  ambiente: string
+  requisitos: string[]
   orgId: string
 }
 
@@ -21,6 +27,12 @@ export class RegisterPetUseCase {
 
   async execute({
     name,
+    ambiente,
+    porte,
+    energia,
+    independencia,
+    requisitos,
+    sobre,
     idade,
     orgId,
   }: RegisterUseCaseRequest): Promise<RegisterUseCaseResponse> {
@@ -32,6 +44,12 @@ export class RegisterPetUseCase {
 
     const pet = await this.petsRepository.create({
       name,
+      porte,
+      ambiente,
+      energia,
+      independencia,
+      requisitos,
+      sobre,
       idade,
       orgs_id: orgId,
     })
